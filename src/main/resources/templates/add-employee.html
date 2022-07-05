@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Add employee</title>
+    <link th:href="@{/css/assets/dist/css/bootstrap.min.css}" rel="stylesheet">
+    <link th:href="@{/css/add.css}" rel="stylesheet">
+</head>
+<body>
+<main class="form-signin">
+
+    <form action="#" th:action="@{/frontend/employeeSave}" th:object="${employee}" method="POST">
+        <h1 class="h3 mb-3 fw-normal">Add employee</h1>
+
+        <label for="firstName">
+            First name
+        </label>
+        <div class="form-floating">
+            <input id="firstName" class="form-control mb-4 col-4" type="text" th:field="*{firstName}"
+                   placeholder="First name">
+        </div>
+        <label for="lastName">
+            Last name
+        </label>
+        <div class="form-floating">
+            <input id="lastName" class="form-control mb-4 col-4" type="text" th:field="*{lastName}"
+                   placeholder="Last name">
+        </div>
+        <label for="companyName">
+            Company name
+        </label>
+        <div class="form-floating">
+            <input id="companyName" class="form-control mb-4 col-4" type="text" th:field="*{companies[0].name}"
+                   placeholder="Company name">
+        </div>
+        <label for="companyPhone">
+            Company phone
+        </label>
+        <div class="form-floating">
+            <input id="companyPhone" class="form-control mb-4 col-4" type="text" th:field="*{companies[0].phone}"
+                   placeholder="Company phone">
+        </div>
+        <label for="companyAddress">
+            Company address
+        </label>
+        <div class="form-floating">
+            <input id="companyAddress" class="form-control mb-4 col-4" type="text" th:field="*{companies[0].address}"
+                   placeholder="Company address">
+        </div>
+        <label for="jobTitle">
+            Job title
+        </label>
+        <div class="form-floating">
+            <input id="jobTitle" class="form-control mb-4 col-4" type="text" th:field="*{jobs[0].title}"
+                   placeholder="Job title">
+        </div>
+        <label for="jobAddress">
+            Job address
+        </label>
+        <div class="form-floating">
+            <input id="jobAddress" class="form-control mb-4 col-4" type="text" th:field="*{addresses[0].address}"
+                   placeholder="Address">
+        </div>
+        <label for="city">
+            City
+        </label>
+        <div class="form-floating">
+            <input id="city" class="form-control mb-4 col-4" type="text" th:field="*{addresses[0].city}"
+                   placeholder="City">
+        </div>
+        <label for="postalCode">
+            Postal code
+        </label>
+        <div class="form-floating">
+            <input id="postalCode" class="form-control mb-4 col-4" type="text" th:field="*{addresses[0].postalCode}"
+                   placeholder="Postal code">
+        </div>
+        <label for="country">
+            Country
+        </label>
+        <div class="form-floating">
+            <input id="country" class="form-control mb-4 col-4" type="text" th:field="*{addresses[0].country}"
+                   placeholder="Country">
+        </div>
+        <label for="email">
+            Email
+        </label>
+        <div class="form-floating">
+            <input id="email" class="form-control mb-4 col-4" type="email" th:field="*{contacts[0].email}"
+                   placeholder="Email">
+        </div>
+        <label for="phone">
+            Phone
+        </label>
+        <div class="form-floating">
+            <input id="phone" class="form-control mb-4 col-4" type="text" th:field="*{contacts[0].phone}"
+                   placeholder="Phone number">
+        </div>
+        <p>Driving License</p>
+        <div>
+            <label for="yes">Yes</label>
+            <input type="radio" id="yes" name="Driving license" value="1" checked>
+            <label for="no">No</label>
+            <input type="radio" id="no" name="Driving license" value="0" checked>
+        </div>
+        <input class="w-100 btn btn-lg btn-primary" type="submit" name="SubmitButton"
+               id="submit_button" value="Save"/>
+    </form>
+</main>
+</body>
+</html>
