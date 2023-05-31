@@ -1,4 +1,7 @@
-back-end :
-  base-uri : "http://localhost:8888/api"
-  employee-uri : "/employee"
-  user-uri : "/user"
+back-end:
+  base-uri: 'http://localhost:8888/api'
+  employee-uri: '/employee'
+  user-uri: '/user'
+
+
+server.port: 8085
