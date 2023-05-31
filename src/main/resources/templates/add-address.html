@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Add address</title>
+    <link rel="stylesheet" th:href="@{/css/assets/dist/css/bootstrap.min.css}">
+    <link rel="stylesheet" th:href="@{/css/add.css}">
+</head>
+<body>
+<main class="form-signin">
+
+    <form method="post" th:action="@{/addressSave}" th:object="${address}">
+        <h1 class="h3 mb-3 fw-normal">Add address</h1>
+        <input type="hidden" th:field="*{employeeId}">
+        <label for="city">
+            City
+        </label>
+        <div class="form-floating">
+            <input class="form-control mb-4 col-4" id="city" placeholder="City" th:field="*{city}"
+                   type="text">
+        </div>
+        <label for="addressDetails">
+            Address details
+        </label>
+        <div class="form-floating">
+            <input class="form-control mb-4 col-4" id="addressDetails" placeholder="Address details"
+                   th:field="*{addressDetails}" type="text">
+        </div>
+        <label for="postalCode">
+            Postal code
+        </label>
+        <div class="form-floating">
+            <input class="form-control mb-4 col-4" id="postalCode" placeholder="Postal code" th:field="*{postalCode}"
+                   type="text">
+        </div>
+        <label for="country">
+            Country
+        </label>
+        <div class="form-floating">
+            <input class="form-control mb-4 col-4" id="country" placeholder="Country" th:field="*{country}"
+                   type="text">
+        </div>
+        <input class="w-100 btn btn-lg btn-primary" id="submit_button" name="SubmitButton"
+               type="submit" value="Save"/>
+    </form>
+</main>
+</body>
+</html>

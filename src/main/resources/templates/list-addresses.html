@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Address list</title>
+    <link rel="stylesheet" th:href="@{/css/assets/dist/css/bootstrap.min.css}">
+    <link rel="stylesheet" th:href="@{/css/list.css}"/>
+
+</head>
+<body>
+<div style="display: flex;width:100%">
+
+    <h2 style="padding: 50px" th:text="'Addresses of employee : ' + ${employee.firstName} + ' ' + ${employee.lastName}"></h2>
+    <br>
+    <div class="table-wrapper-scroll-y my-custom-scrollbar right-container">
+        <table class="table table-striped mb-0">
+            <thead>
+            <tr>
+                <th scope="col">Id</th>
+                <th scope="col">City</th>
+                <th scope="col">Details</th>
+                <th scope="col">Postal code</th>
+                <th scope="col">Country</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="address : ${addresses}">
+                <td th:text="${address.id}"/>
+                <td th:text="${address.city}"/>
+                <td th:text="${address.addressDetails}"/>
+                <td th:text="${address.postalCode}"/>
+                <td th:text="${address.country}"/>
+                <td>
+                    <a class="btn btn-danger btn-sm"
+                       th:href="@{/addressDelete(addressId=${address.id},employeeId=${employee.id})}">
+                        Delete
+                    </a>
+                </td>
+            </tr>
+            </tbody>
+
+        </table>
+        <a class="btn btn-primary btn-sm mb-3"
+           th:href="@{/showAddressAdd(employeeId=${employee.id})}">
+            Add an address
+        </a>
+    </div>
+</div>
+</body>
+</html>
