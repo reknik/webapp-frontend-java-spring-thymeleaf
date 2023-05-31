@@ -1,25 +1,25 @@
 package com.reknik.webAppDemoFrontEnd.entity;
 
-import lombok.Data;
+import java.io.Serializable;
 
-public class Job {
+public class Job implements Serializable {
 
-  private int id;
-  private String title;
+    private int id;
+    private String title;
 
-  public int getId() {
-    return id;
-  }
+    public int getId() {
+        return id;
+    }
 
-  public void setId(int id) {
-    this.id = id;
-  }
+    public void setId(int id) {
+        this.id = id;
+    }
 
-  public String getTitle() {
-    return title;
-  }
+    public String getTitle() {
+        return title;
+    }
 
-  public void setTitle(String title) {
-    this.title = title;
-  }
+    public void setTitle(String title) {
+        this.title = title;
+    }
 }

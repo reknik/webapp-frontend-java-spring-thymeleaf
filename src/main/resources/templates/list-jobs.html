@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Jobs list</title>
+    <link rel="stylesheet" th:href="@{/css/assets/dist/css/bootstrap.min.css}">
+    <link rel="stylesheet" th:href="@{/css/list.css}"/>
+
+</head>
+<body>
+<div style="display: flex;width:100%">
+
+    <h2 style="padding: 50px" th:text="'Jobs of employee : ' + ${employee.firstName} + ' ' + ${employee.lastName}"></h2>
+    <br>
+    <div class="table-wrapper-scroll-y my-custom-scrollbar right-container">
+        <table class="table table-striped mb-0">
+            <thead>
+            <tr>
+                <th scope="col">Id</th>
+                <th scope="col">Title</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="job : ${jobs}">
+                <td th:text="${job.id}"/>
+                <td th:text="${job.title}"/>
+                <td>
+                    <a class="btn btn-danger btn-sm"
+                       th:href="@{/jobDelete(jobId=${job.id},employeeId=${employee.id})}">
+                        Delete
+                    </a>
+                </td>
+            </tr>
+            </tbody>
+
+        </table>
+        <a class="btn btn-primary btn-sm mb-3"
+           th:href="@{/showJobsAdd(employeeId=${employee.id})}">
+            Add a job
+        </a>
+    </div>
+</div>
+</body>
+</html>

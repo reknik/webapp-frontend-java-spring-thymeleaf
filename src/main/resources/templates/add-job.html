@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Add job</title>
+    <link rel="stylesheet" th:href="@{/css/assets/dist/css/bootstrap.min.css}">
+    <link rel="stylesheet" th:href="@{/css/add.css}">
+</head>
+<body>
+<main class="form-signin">
+
+    <form method="post" th:action="@{/jobSave}" th:object="${job}">
+        <h1 class="h3 mb-3 fw-normal">Add job</h1>
+        <input type="hidden" th:field="*{employeeId}">
+        <label for="firstName">
+            Job title
+        </label>
+        <div class="form-floating">
+            <input class="form-control mb-4 col-4" id="firstName" placeholder="First name" th:field="*{title}"
+                   type="text">
+        </div>
+        <input class="w-100 btn btn-lg btn-primary" id="submit_button" name="SubmitButton"
+               type="submit" value="Save"/>
+    </form>
+</main>
+</body>
+</html>
