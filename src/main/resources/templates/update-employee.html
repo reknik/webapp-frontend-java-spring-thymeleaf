@@ -1,115 +1,45 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <title>Update employee</title>
-    <link th:href="@{/css/assets/dist/css/bootstrap.min.css}" rel="stylesheet">
-    <link th:href="@{/css/update.css}" rel="stylesheet"/>
+    <link rel="stylesheet" th:href="@{/css/assets/dist/css/bootstrap.min.css}">
+    <link rel="stylesheet" th:href="@{/css/update.css}"/>
 </head>
 <body>
 <main class="form-signin">
-    <form action="#" th:action="@{/frontend/employeeUpdate}" th:object="${employee}" method="POST">
+    <form action="#" method="POST" th:action="@{/employeeUpdate}" th:object="${employee}">
         <h1 class="h3 mb-3 fw-normal">Update employee</h1>
-        <input type="hidden" th:field="*{id}"/>
+        <input th:field="*{id}" type="hidden"/>
         <label for="firstName">
             First name
         </label>
         <div class="form-floating">
-            <input id="firstName" class="form-control mb-4 col-4" type="text" th:field="*{firstName}"
-                   placeholder="First name">
+            <input class="form-control mb-4 col-4" id="firstName" placeholder="First name" th:field="*{firstName}"
+                   type="text">
         </div>
         <label for="lastName">
             Last name
         </label>
         <div class="form-floating">
-            <input id="lastName" class="form-control mb-4 col-4" type="text" th:field="*{lastName}"
-                   placeholder="Last name">
+            <input class="form-control mb-4 col-4" id="lastName" placeholder="Last name" th:field="*{lastName}"
+                   type="text">
         </div>
-        <label for="companyName">
-            Company name
-        </label>
-        <div class="form-floating">
-            <input id="companyName" class="form-control mb-4 col-4" type="text" th:field="*{companies[0].name}"
-                   placeholder="Company name">
-        </div>
-        <label for="companyPhone">
-            Company phone
-        </label>
-        <div class="form-floating">
-            <input id="companyPhone" class="form-control mb-4 col-4" type="text" th:field="*{companies[0].phone}"
-                   placeholder="Company phone">
-        </div>
-        <label for="companyAddress">
-            Company address
-        </label>
-        <div class="form-floating">
-            <input id="companyAddress" class="form-control mb-4 col-4" type="text" th:field="*{companies[0].address}"
-                   placeholder="Company address">
-        </div>
-        <label for="jobId">
-            Job ID
-        </label>
-        <div class="form-floating">
-            <input id="jobId" class="form-control mb-4 col-4" type="text" th:field="*{jobs[0].id}" placeholder="Job id">
-        </div>
-        <label for="jobTitle">
-            Job title
-        </label>
-        <div class="form-floating">
-            <input id="jobTitle" class="form-control mb-4 col-4" type="text" th:field="*{jobs[0].title}"
-                   placeholder="Job title">
-        </div>
-        <label for="jobAddress">
-            Job address
-        </label>
-        <div class="form-floating">
-            <input id="jobAddress" class="form-control mb-4 col-4" type="text" th:field="*{addresses[0].address}"
-                   placeholder="Address">
-        </div>
-        <label for="city">
-            City
-        </label>
-        <div class="form-floating">
-            <input id="city" class="form-control mb-4 col-4" type="text" th:field="*{addresses[0].city}"
-                   placeholder="City">
-        </div>
-        <label for="postalCode">
-            Postal code
-        </label>
-        <div class="form-floating">
-            <input id="postalCode" class="form-control mb-4 col-4" type="text" th:field="*{addresses[0].postalCode}"
-                   placeholder="Postal code">
-        </div>
-        <label for="country">
-            Country
-        </label>
-        <div class="form-floating">
-            <input id="country" class="form-control mb-4 col-4" type="text" th:field="*{addresses[0].country}"
-                   placeholder="Country">
-        </div>
-        <label for="email">
-            Email
-        </label>
-        <div class="form-floating">
-            <input id="email" class="form-control mb-4 col-4" type="email" th:field="*{contacts[0].email}"
-                   placeholder="Email">
-        </div>
-        <label for="phone">
-            Phone
-        </label>
-        <div class="form-floating">
-            <input id="phone" class="form-control mb-4 col-4" type="text" th:field="*{contacts[0].phone}"
-                   placeholder="Phone number">
+        <div class="form-group">
+            <label for="company">Select a company</label>
+            <select class="form-control" id="company" multiple th:field="*{companyId}">
+                <option th:each="company : ${companies}" th:text="${company.name}" th:value="${company.id}"></option>
+            </select>
         </div>
         <p>Driving License</p>
         <div>
             <label for="yes">Yes</label>
-            <input type="radio" id="yes" name="Driving license" value="1" checked>
+            <input checked id="yes" name="Driving license" type="radio" value="1">
             <label for="no">No</label>
-            <input type="radio" id="no" name="Driving license" value="0" checked>
+            <input checked id="no" name="Driving license" type="radio" value="0">
         </div>
-        <input class="w-100 btn btn-lg btn-primary" type="submit" name="SubmitButton"
-               id="submit_button" value="Save"/>
+        <input class="w-100 btn btn-lg btn-primary" id="submit_button" name="SubmitButton"
+               type="submit" value="Save"/>
     </form>
 </main>
 </body>

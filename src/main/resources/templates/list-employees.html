@@ -1,10 +1,10 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <title>Employees list</title>
-    <link th:href="@{/css/assets/dist/css/bootstrap.min.css}" rel="stylesheet">
-    <link th:href="@{/css/list.css}" rel="stylesheet"/>
+    <link rel="stylesheet" th:href="@{/css/assets/dist/css/bootstrap.min.css}">
+    <link rel="stylesheet" th:href="@{/css/list.css}"/>
 
 </head>
 <body>
@@ -17,12 +17,10 @@
                 <th scope="col">Id</th>
                 <th scope="col">First Name</th>
                 <th scope="col">Last Name</th>
-                <th scope="col">Companies</th>
+                <th scope="col">Current company</th>
                 <th scope="col">Jobs</th>
-                <th scope="col">Contacts</th>
                 <th scope="col">Addresses</th>
                 <th scope="col">Driving License</th>
-                <th scope="col">Age</th>
             </tr>
             </thead>
             <tbody>
@@ -30,21 +28,35 @@
                 <td th:text="${tempEmployee.id}"/>
                 <td th:text="${tempEmployee.firstName}"/>
                 <td th:text="${tempEmployee.lastName}"/>
-                <td th:text="${tempEmployee.printCompanies()}"/>
-                <td th:text="${tempEmployee.printJobs()}"/>
-                <td th:text="${tempEmployee.printContacts()}"/>
-                <td th:text="${tempEmployee.printAddresses()}"/>
-                <td th:text="${tempEmployee.drivingLicense}"/>
-                <td th:text="${tempEmployee.age}"/>
+                <td>
+                    <a th:if="${tempEmployee.companies != null && !tempEmployee.companies.isEmpty() }" class="btn btn-info btn-sm"
+                       th:href="@{/showEmployeesForCompany(companyId=${tempEmployee.companies[0]})}">
+                        <span
+                                th:text="${companyMap.get(tempEmployee.companies[0]).name}" ></span>
+                    </a>
+                </td>
                 <td>
                     <a class="btn btn-info btn-sm"
-                       th:href="@{/frontend/showEmployeeUpdate(employeeId=${tempEmployee.id})}">
+                       th:href="@{/showJobs/{employeeId}(employeeId=${tempEmployee.id})}">
+                        Show
+                    </a>
+                </td>
+                <td>
+                    <a class="btn btn-info btn-sm"
+                       th:href="@{/showAddresses/{employeeId}(employeeId=${tempEmployee.id})}">
+                        Show
+                    </a>
+                </td>
+                <td th:text="${tempEmployee.drivingLicense}"/>
+                <td>
+                    <a class="btn btn-info btn-sm"
+                       th:href="@{/showEmployeeUpdate(employeeId=${tempEmployee.id})}">
                         Update
                     </a>
                 </td>
                 <td>
                     <a class="btn btn-danger btn-sm"
-                       th:href="@{/frontend/employeeDelete(employeeId=${tempEmployee.id})}">
+                       th:href="@{/employeeDelete(employeeId=${tempEmployee.id})}">
                         Delete
                     </a>
                 </td>
@@ -53,7 +65,7 @@
 
         </table>
         <a class="btn btn-primary btn-sm mb-3"
-           th:href="@{/frontend/showEmployeeAdd}">
+           th:href="@{/showEmployeeAdd}">
             Add employee
         </a>
     </div>
