@@ -1,9 +1,7 @@
 package com.reknik.webAppDemoFrontEnd.service;
 
 import com.reknik.webAppDemoFrontEnd.entity.dto.AddressDTO;
-import com.reknik.webAppDemoFrontEnd.entity.dto.JobDTO;
 import com.reknik.webAppDemoFrontEnd.entity.request.AddressAddRequest;
-import com.reknik.webAppDemoFrontEnd.entity.request.JobAddRequest;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;

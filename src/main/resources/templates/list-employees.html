@@ -29,10 +29,11 @@
                 <td th:text="${tempEmployee.firstName}"/>
                 <td th:text="${tempEmployee.lastName}"/>
                 <td>
-                    <a th:if="${tempEmployee.companies != null && !tempEmployee.companies.isEmpty() }" class="btn btn-info btn-sm"
-                       th:href="@{/showEmployeesForCompany(companyId=${tempEmployee.companies[0]})}">
+                    <a class="btn btn-info btn-sm"
+                       th:href="@{/showEmployeesForCompany(companyId=${tempEmployee.companies[0]})}"
+                       th:if="${tempEmployee.companies != null && !tempEmployee.companies.isEmpty() }">
                         <span
-                                th:text="${companyMap.get(tempEmployee.companies[0]).name}" ></span>
+                                th:text="${companyMap.get(tempEmployee.companies[0]).name}"></span>
                     </a>
                 </td>
                 <td>

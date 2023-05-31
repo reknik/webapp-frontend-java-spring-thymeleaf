@@ -11,7 +11,7 @@
 
     <form method="post" th:action="@{/addressSave}" th:object="${address}">
         <h1 class="h3 mb-3 fw-normal">Add address</h1>
-        <input type="hidden" th:field="*{employeeId}">
+        <input th:field="*{employeeId}" type="hidden">
         <label for="city">
             City
         </label>

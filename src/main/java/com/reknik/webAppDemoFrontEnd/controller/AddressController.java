@@ -2,9 +2,7 @@ package com.reknik.webAppDemoFrontEnd.controller;
 
 import com.reknik.webAppDemoFrontEnd.entity.dto.AddressDTO;
 import com.reknik.webAppDemoFrontEnd.entity.dto.EmployeeDTO;
-import com.reknik.webAppDemoFrontEnd.entity.dto.JobDTO;
 import com.reknik.webAppDemoFrontEnd.entity.request.AddressAddRequest;
-import com.reknik.webAppDemoFrontEnd.entity.request.JobAddRequest;
 import com.reknik.webAppDemoFrontEnd.service.AddressService;
 import com.reknik.webAppDemoFrontEnd.service.EmployeeService;
 import org.springframework.http.HttpStatus;
@@ -56,7 +54,7 @@ public class AddressController {
 
     @GetMapping("/addressDelete")
     public String addressDelete(Model theModel, @RequestParam("addressId") long addressId,
-                         @RequestParam("employeeId") long employeeId) {
+                                @RequestParam("employeeId") long employeeId) {
         Mono<HttpStatus> status = addressService.delete(addressId);
         theModel.addAttribute("succeeded", status);
         return "redirect:/showAddresses/" + employeeId;
