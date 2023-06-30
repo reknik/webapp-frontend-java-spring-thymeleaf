@@ -1,7 +1,11 @@
-back-end:
-  base-uri: 'http://localhost:8888/api'
-  employee-uri: '/employee'
-  user-uri: '/user'
+server:
+  http2:
+    enabled: true
+  port: 8085
+  ssl:
+    trust-store: classpath:keystore/self-signed-cert.p12
+    trust-store-password: changeit
+    key-store-type: PKCS12
+    key-store: classpath:keystore/self-signed-cert.p12
+    key-store-password: changeit
 
-
-server.port: 8085
