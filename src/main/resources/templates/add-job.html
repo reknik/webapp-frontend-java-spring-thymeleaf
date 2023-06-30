@@ -10,13 +10,13 @@
 <main class="form-signin">
 
     <form method="post" th:action="@{/jobSave}" th:object="${job}">
-        <h1 class="h3 mb-3 fw-normal">Add job</h1>
+        <h1 class="h3 mb-3 fw-normal">Add a job</h1>
         <input th:field="*{employeeId}" type="hidden">
-        <label for="firstName">
+        <label for="title">
             Job title
         </label>
         <div class="form-floating">
-            <input class="form-control mb-4 col-4" id="firstName" placeholder="First name" th:field="*{title}"
+            <input class="form-control mb-4 col-4" id="title" placeholder="Job title" th:field="*{title}"
                    type="text">
         </div>
         <input class="w-100 btn btn-lg btn-primary" id="submit_button" name="SubmitButton"
