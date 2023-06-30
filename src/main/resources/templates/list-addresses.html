@@ -39,7 +39,7 @@
                 <td th:text="${address.postalCode}"/>
                 <td th:text="${address.country}"/>
                 <td>
-                    <a class="btn btn-danger btn-sm"
+                    <a class="btn btn-danger btn-sm" th:if="${#lists.contains(userRoles, 'ADMIN')}"
                        th:href="@{/addressDelete(addressId=${address.id},employeeId=${employee.id})}">
                         Delete
                     </a>

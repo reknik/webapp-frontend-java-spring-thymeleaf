@@ -39,11 +39,11 @@
             <input class="form-control mb-4 col-4" id="jobTitle" placeholder="Job title" th:field="*{job.title}"
                    type="text">
         </div>
-        <label for="jobAddress">
-            Job address
+        <label for="address">
+            Address
         </label>
         <div class="form-floating">
-            <input class="form-control mb-4 col-4" id="jobAddress" placeholder="Address"
+            <input class="form-control mb-4 col-4" id="address" placeholder="Address"
                    th:field="*{address.addressDetails}"
                    type="text">
         </div>
@@ -86,9 +86,9 @@
         <p>Driving License</p>
         <div>
             <label for="yes">Yes</label>
-            <input checked id="yes" name="Driving license" type="radio" value="1">
+            <input checked id="yes" name="Driving license" type="radio" value="1" th:field="*{drivingLicense}">
             <label for="no">No</label>
-            <input checked id="no" name="Driving license" type="radio" value="0">
+            <input checked id="no" name="Driving license" type="radio" value="0" th:field="*{drivingLicense}">
         </div>
         <input class="w-100 btn btn-lg btn-primary" id="submit_button" name="SubmitButton"
                type="submit" value="Save"/>

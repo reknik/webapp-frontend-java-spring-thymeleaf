@@ -34,7 +34,7 @@
                 <td th:text="${contact.phone}"/>
                 <td th:text="${contact.email}"/>
                 <td>
-                    <a class="btn btn-danger btn-sm"
+                    <a class="btn btn-danger btn-sm" th:if="${#lists.contains(userRoles, 'ADMIN')}"
                        th:href="@{/contactDelete(contactId=${contact.id},employeeId=${employee.id})}">
                         Delete
                     </a>

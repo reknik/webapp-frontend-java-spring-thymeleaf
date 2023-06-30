@@ -5,6 +5,7 @@ import com.reknik.webAppDemoFrontEnd.entity.dto.JobDTO;
 import com.reknik.webAppDemoFrontEnd.entity.request.JobAddRequest;
 import com.reknik.webAppDemoFrontEnd.service.EmployeeService;
 import com.reknik.webAppDemoFrontEnd.service.JobService;
+import com.reknik.webAppDemoFrontEnd.service.RoleService;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -12,23 +13,29 @@ import org.springframework.web.bind.annotation.*;
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 
+import java.util.List;
+
 @Controller
 public class JobController {
 
     private final JobService jobService;
 
     private final EmployeeService employeeService;
+    private final RoleService roleService;
 
-    public JobController(final JobService jobService, final EmployeeService employeeService) {
+    public JobController(final JobService jobService, final EmployeeService employeeService, RoleService roleService) {
         this.jobService = jobService;
         this.employeeService = employeeService;
+        this.roleService = roleService;
     }
 
     @GetMapping("/showJobs/{employeeId}")
     public String showJobsForEmployee(@PathVariable("employeeId") long employeeId, Model theModel) {
         Mono<EmployeeDTO> employee = employeeService.findById(employeeId);
         Flux<JobDTO> jobs = jobService.findJobsForEmployeeId(employeeId);
+        Mono<List<String>> userRoles = roleService.getUserRoles();
         theModel.addAttribute("employee", employee);
+        theModel.addAttribute("userRoles", userRoles);
         theModel.addAttribute("jobs", jobs);
         return "list-jobs";
     }
