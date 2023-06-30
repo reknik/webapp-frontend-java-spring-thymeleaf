@@ -13,8 +13,7 @@ import reactor.core.publisher.Mono;
 @Service
 public class JobService {
 
-    final
-    WebClient webClient;
+    private final WebClient webClient;
 
     public JobService(final WebClient webClient) {
         this.webClient = webClient;
