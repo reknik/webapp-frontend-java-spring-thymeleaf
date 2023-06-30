@@ -8,7 +8,7 @@
 
 </head>
 <body>
-<div style="display: flex;width:100%">
+<div style="display: flex;width:100%;flex-direction: column;">
 
     <div class="table-wrapper-scroll-y my-custom-scrollbar right-container">
         <table class="table table-striped mb-0">
@@ -19,6 +19,7 @@
                 <th scope="col">Last Name</th>
                 <th scope="col">Current company</th>
                 <th scope="col">Jobs</th>
+                <th scope="col">Contacts</th>
                 <th scope="col">Addresses</th>
                 <th scope="col">Driving License</th>
             </tr>
@@ -39,23 +40,29 @@
                 <td>
                     <a class="btn btn-info btn-sm"
                        th:href="@{/showJobs/{employeeId}(employeeId=${tempEmployee.id})}">
-                        Show
+                        Show jobs
+                    </a>
+                </td>
+                <td>
+                    <a class="btn btn-info btn-sm"
+                       th:href="@{/showContacts/{employeeId}(employeeId=${tempEmployee.id})}">
+                        Show contacts
                     </a>
                 </td>
                 <td>
                     <a class="btn btn-info btn-sm"
                        th:href="@{/showAddresses/{employeeId}(employeeId=${tempEmployee.id})}">
-                        Show
+                        Show addresses
                     </a>
                 </td>
-                <td th:text="${tempEmployee.drivingLicense}"/>
-                <td>
+                <td th:text="${tempEmployee.drivingLicense} ? 'Yes' : 'No'"/>
+                <td th:if="${#lists.contains(userRoles, 'EMPLOYEE')}">
                     <a class="btn btn-info btn-sm"
                        th:href="@{/showEmployeeUpdate(employeeId=${tempEmployee.id})}">
                         Update
                     </a>
                 </td>
-                <td>
+                <td th:if="${#lists.contains(userRoles, 'ADMIN')}">
                     <a class="btn btn-danger btn-sm"
                        th:href="@{/employeeDelete(employeeId=${tempEmployee.id})}">
                         Delete
@@ -65,11 +72,18 @@
             </tbody>
 
         </table>
-        <a class="btn btn-primary btn-sm mb-3"
-           th:href="@{/showEmployeeAdd}">
+        <a class="btn btn-primary btn-sm mb-3" th:href="@{/showEmployeeAdd}"
+           th:if="${#lists.contains(userRoles, 'EMPLOYEE')}">
             Add employee
         </a>
     </div>
+
+    <div style="display: flex;justify-content: flex-end;">
+        <a class="btn btn-primary btn-sm mb-3" href="/logout" style="margin-top: 16px;">
+            Logout
+        </a>
+    </div>
+
 </div>
 </body>
 </html>
