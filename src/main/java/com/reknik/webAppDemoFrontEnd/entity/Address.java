@@ -8,7 +8,7 @@ public class Address implements Serializable {
 
     private String city;
 
-    private String address;
+    private String addressDetails;
 
     private String postalCode;
 
@@ -30,12 +30,12 @@ public class Address implements Serializable {
         this.city = city;
     }
 
-    public String getAddress() {
-        return address;
+    public String getAddressDetails() {
+        return addressDetails;
     }
 
-    public void setAddress(String address) {
-        this.address = address;
+    public void setAddressDetails(String addressDetails) {
+        this.addressDetails = addressDetails;
     }
 
     public String getPostalCode() {
