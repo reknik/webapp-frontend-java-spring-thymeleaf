@@ -1,5 +1,5 @@
 plugins {
-	id 'org.springframework.boot' version '3.0.6'
+	id 'org.springframework.boot' version '3.1.1'
 	id 'io.spring.dependency-management' version '1.1.0'
 	id 'java'
 }
@@ -7,7 +7,6 @@ plugins {
 group = 'com.reknik'
 version = '0.0.1-SNAPSHOT'
 sourceCompatibility = '17'
-
 repositories {
 	mavenCentral()
 }
@@ -16,8 +15,8 @@ dependencies {
 	implementation 'org.springframework.boot:spring-boot-starter-thymeleaf'
 	// https://mvnrepository.com/artifact/org.springframework.boot/spring-boot-starter-webflux
 	implementation group: 'org.springframework.boot', name: 'spring-boot-starter-webflux', version: '3.0.6'
+	implementation 'org.projectlombok:lombok:1.18.26'
 	// https://mvnrepository.com/artifact/org.projectlombok/lombok
-	implementation group: 'org.projectlombok', name: 'lombok', version: '1.18.26'
 	developmentOnly 'org.springframework.boot:spring-boot-devtools'
 	testImplementation 'org.springframework.boot:spring-boot-starter-test'
 	// https://mvnrepository.com/artifact/org.thymeleaf.extras/thymeleaf-extras-springsecurity6
@@ -26,8 +25,4 @@ dependencies {
 	// https://mvnrepository.com/artifact/org.springframework.boot/spring-boot-starter-oauth2-client
 	implementation group: 'org.springframework.boot', name: 'spring-boot-starter-oauth2-client', version: '3.0.6'
 
-}
-
-tasks.named('test') {
-	useJUnitPlatform()
 }
