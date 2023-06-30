@@ -126,7 +126,7 @@ public class Employee {
     public String printAddresses() {
         StringBuilder builder = new StringBuilder();
         this.addresses.forEach(
-                address -> builder.append(address.getAddress()).append(" ").append(address.getCity()).append(" ")
+                address -> builder.append(address.getAddressDetails()).append(" ").append(address.getCity()).append(" ")
                         .append(address.getCountry()).append(" ; "));
         return builder.toString();
     }

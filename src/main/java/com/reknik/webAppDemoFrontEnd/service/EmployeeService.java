@@ -52,7 +52,7 @@ public class EmployeeService {
 
     public Mono<HttpStatus> deleteById(final int id) {
         return webClient.delete()
-                .uri("/employee/deleteById?id=" + id)
+                .uri("/employee/" + id)
                 .retrieve()
                 .bodyToMono(HttpStatus.class);
     }

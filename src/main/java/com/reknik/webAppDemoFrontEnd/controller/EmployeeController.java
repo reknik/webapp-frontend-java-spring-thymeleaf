@@ -5,6 +5,7 @@ import com.reknik.webAppDemoFrontEnd.entity.dto.EmployeeDTO;
 import com.reknik.webAppDemoFrontEnd.entity.request.EmployeeAddRequest;
 import com.reknik.webAppDemoFrontEnd.service.CompanyService;
 import com.reknik.webAppDemoFrontEnd.service.EmployeeService;
+import com.reknik.webAppDemoFrontEnd.service.RoleService;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -27,19 +28,29 @@ public class EmployeeController {
 
     private final CompanyService companyService;
 
+    private final RoleService roleService;
+
     private final String redirectToMain;
 
-    public EmployeeController(final EmployeeService employeeService, final CompanyService companyService) {
+    public EmployeeController(final EmployeeService employeeService, final CompanyService companyService, RoleService roleService) {
         this.employeeService = employeeService;
         this.companyService = companyService;
+        this.roleService = roleService;
         redirectToMain = "redirect:/showEmployees";
+    }
+
+    @GetMapping("/")
+    public String defaultSuccess() {
+        return redirectToMain;
     }
 
     @GetMapping("/showEmployees")
     public String showEmployees(Model theModel) {
         Flux<CompanyDTO> companyFlux = companyService.findAll();
         Flux<EmployeeDTO> employeeFlux = employeeService.findAll();
+        Mono<List<String>> userRoles = roleService.getUserRoles();
         theModel.addAttribute("employees", employeeFlux);
+        theModel.addAttribute("userRoles", userRoles);
         theModel.addAttribute("companyMap", companyFlux.collectMap(CompanyDTO::getId, Function.identity()));
         return "list-employees";
     }
@@ -47,10 +58,12 @@ public class EmployeeController {
     @GetMapping("/showEmployeesForCompany")
     public String showEmployeesForCompany(@RequestParam("companyId") long companyId, Model theModel) {
         Flux<EmployeeDTO> employeeFlux = employeeService.findAll();
+        Mono<List<String>> userRoles = roleService.getUserRoles();
         Flux<CompanyDTO> companyFlux = companyService.findAll();
         employeeFlux = employeeFlux.filter(
                 employeeDTO -> employeeDTO.getCompanies() != null && employeeDTO.getCompanies().contains(companyId));
         theModel.addAttribute("employees", employeeFlux);
+        theModel.addAttribute("userRoles", userRoles);
         theModel.addAttribute("companyMap", companyFlux.collectMap(CompanyDTO::getId, Function.identity()));
         return "list-employees";
     }
